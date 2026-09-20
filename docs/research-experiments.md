@@ -8,7 +8,7 @@
 
 ## Repro
 
-- Same `seed` replays same `TICK.rng` stream and same inference jitter/noise modulo the `hash(model_id)` per-process-salt caveat (use `PYTHONHASHSEED=0` for cross-process runs). `rebuild(t)` gives time-travel scrub for post-hoc analysis.
+- Same `seed` replays same `TICK.rng` stream and same inference jitter/noise (stable sha256 of `model_id`). `rebuild(t)` gives time-travel scrub for post-hoc analysis.
 
 ## 5 strategies comparison dimensions
 

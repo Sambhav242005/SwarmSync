@@ -8,7 +8,7 @@
 
 ## Seeded RNG
 
-- `Engine(seed)` -> `random.Random(seed)`; `reset(seed?)` reseeds. Each `TICK` payload carries `rng.random()`. `run_inference(..., seed)` uses `random.Random(seed + hash(model_id) % 100000)` with `0.95 + rng*0.1` latency jitter and `(rng-0.5)*0.05` quality noise. Known limit: `hash()` is per-process salted — cross-process determinism needs `PYTHONHASHSEED=0` or stable hashlib (deferred).
+- `Engine(seed)` -> `random.Random(seed)`; `reset(seed?)` reseeds. Each `TICK` payload carries `rng.random()`. `run_inference(..., seed)` uses `random.Random(seed + int(sha256(model_id),16) % 100000)` (stable sha256 across processes) with `0.95 + rng*0.1` latency jitter and `(rng-0.5)*0.05` quality noise.
 
 ## Event log / rebuild
 

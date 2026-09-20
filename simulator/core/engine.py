@@ -9,7 +9,9 @@ class Engine:
     def start(self): self.clock.paused = False
     def pause(self): self.clock.paused = True
     def resume(self): self.clock.paused = False
-    def set_speed(self, s: float): self.clock.speed = s
+    def set_speed(self, s: float): 
+        if s not in (0.25,0.5,1.0,2.0,5.0,10.0): raise ValueError(f"invalid speed {s}")
+        self.clock.speed = s
     def reset(self, seed: int | None = None):
         if seed is not None: self.seed = seed
         self.rng = random.Random(self.seed); self.log = EventLog(); self._n = 0

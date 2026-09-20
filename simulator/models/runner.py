@@ -1,4 +1,5 @@
 """Deterministic seeded inference cost model (headless, small)."""
+import hashlib
 import random
 
 QUANT_FACTOR = {"FP32": 1.6, "FP16": 1.2, "INT8": 1.0, "INT4": 0.8}
@@ -11,7 +12,7 @@ def _clamp(x, lo=0.0, hi=1.0):
 
 def run_inference(device, model, complexity, seed=0):
     """Return {latency_ms, memory_mb, energy_mwh, quality, confidence}."""
-    rng = random.Random(seed + hash(model.get("model_id", "")) % 100000)
+    rng = random.Random(seed + int(hashlib.sha256(model.get("model_id", "").encode()).hexdigest(),16) % 100000)
     q = QUANT_FACTOR.get(model.get("quantization", "INT8"), 1.0)
     t = THERMAL_FACTOR.get(device.get("thermal_state", "normal"), 1.0)
     batt = 1.2 if device.get("battery_percent", 100) < 20 else 1.0

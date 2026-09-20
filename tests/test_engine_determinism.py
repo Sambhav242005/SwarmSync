@@ -1,4 +1,5 @@
 from simulator.core.engine import Engine
+import pytest
 def test_same_seed_same_log():
     a = Engine(seed=7); a.start()
     for _ in range(10): a.tick(0.5)
@@ -10,3 +11,7 @@ def test_rebuild_rewinds():
     for _ in range(20): e.tick(0.5)
     s5 = e.rebuild(5.0)
     assert s5["sim_time"] == 5.0
+    assert s5["events"] == [x.to_dict() for x in e.log.up_to(5.0)]
+def test_set_speed_invalid():
+    e = Engine(seed=7)
+    with pytest.raises(ValueError): e.set_speed(3)

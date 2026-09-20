@@ -15,9 +15,9 @@
 - `POST /simulation/create {seed}` -> `{simulation_id}`; `start/pause/reset/step {simulation_id, dt?}`; `GET /simulation/state?simulation_id` -> `rebuild(now)`; `GET /simulation/{sid}/events`; `GET /simulation/{sid}/metrics` -> `{messages: len(log)}` (minimal stub; full Collector wiring deferred, see metrics doc).
 - `WS /ws/simulation/{sid}`: accepts, sends `{sim_time, events: up_to(now)}` snapshot, closes (one-shot snapshot stream in slice).
 
-## Thin renderer
+## Thin renderer — slice truth
 
-- `apps/web`: Next.js shell (Hud, Timeline, world div ids preserved Task6->7), Phaser world renders 6 units event-driven from WS/REST packets, Inspector/Lenses/Trace render events only — **no sim logic in frontend**. `useSim(selectedId, events, speed, paused)` hook shared by Inspector/Lenses/Trace.
+- Engine ticks TICK-only; WS one-shot snapshot; frontend static shell (Hud hardcoded demo values, scrub noop, spawnPacket exposed unwired) — live wiring next slice. Keep sim-disclaimers.
 
 ## Repo structure
 
