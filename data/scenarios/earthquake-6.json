@@ -1,0 +1,14 @@
+{
+  "scenario_id": "earthquake_response",
+  "devices": ["android_01", "android_02", "android_03", "android_04", "android_05", "android_06"],
+  "agents": [
+    {"id": "agent_a", "role": "vision_ocr"},
+    {"id": "agent_b", "role": "vision"},
+    {"id": "agent_c", "role": "small_llm"},
+    {"id": "agent_d", "role": "ocr_reasoning"},
+    {"id": "agent_e", "role": "embedding_validator"},
+    {"id": "agent_f", "role": "coordinator"}
+  ],
+  "network": {"mode": "intermittent", "bandwidth_kbps": 800, "latency_ms": 120, "packet_loss": 0.15, "range_m": 30},
+  "failures": [{"device": "android_04", "at": 60, "for": 20}]
+}
