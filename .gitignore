@@ -5,3 +5,9 @@ node_modules/
 .next/
 experiments/runs/*.db
 .superpowers/
+
+# web build artifacts
+*.tsbuildinfo
+apps/web/.next/
+apps/web/out/
+
