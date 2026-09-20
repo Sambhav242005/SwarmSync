@@ -1,0 +1,6 @@
+[
+  {"profile_id":"high_end","ram_gb":12,"cpu_score":0.92,"gpu_score":0.94,"npu_score":0.9,"battery_mah":5000},
+  {"profile_id":"upper_mid","ram_gb":8,"cpu_score":0.71,"gpu_score":0.83,"npu_score":0.77,"battery_mah":4500},
+  {"profile_id":"mid","ram_gb":6,"cpu_score":0.55,"gpu_score":0.6,"npu_score":0.5,"battery_mah":4000},
+  {"profile_id":"low_end","ram_gb":4,"cpu_score":0.35,"gpu_score":0.38,"npu_score":0.2,"battery_mah":3500}
+]

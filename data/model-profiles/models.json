@@ -1,0 +1,4 @@
+[
+  {"model_id":"ocr_int8","name":"OCR INT8","model_type":"ocr","quantization":"INT8","model_size_mb":45,"memory_requirement_mb":320,"base_latency_ms":210,"quality_score":0.84,"energy_cost":1.0,"thermal_cost":0.6,"supported_tasks":["ocr"],"supported_runtimes":["nnapi","cpu"]},
+  {"model_id":"det_int8","name":"Detector INT8","model_type":"object_detection","quantization":"INT8","model_size_mb":60,"memory_requirement_mb":480,"base_latency_ms":260,"quality_score":0.82,"energy_cost":1.2,"thermal_cost":0.7,"supported_tasks":["detect"],"supported_runtimes":["nnapi","gpu"]}
+]
