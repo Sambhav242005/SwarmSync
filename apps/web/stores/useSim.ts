@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { SimEvent } from "../../../shared/types/events";
+import type { SimEvent } from "@/lib/sim/types";
 type Slice = { simTime:number; events:SimEvent[]; selectedId:string|null; speed:number; paused:boolean;
   setEvents:(e:SimEvent[])=>void; setSnapshot:(simTime:number,events:SimEvent[])=>void; select:(id:string|null)=>void; setSpeed:(s:number)=>void; setPaused:(p:boolean)=>void };
 export const useSim = create<Slice>((set)=>({

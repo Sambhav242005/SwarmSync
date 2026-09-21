@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import type { SimEvent } from "../../../shared/types/events";
+import type { SimEvent } from "@/lib/sim/types";
 import { TraceView } from "./TraceView";
 
 type Tab = "TRACE" | "KNOWLEDGE" | "NETWORK";

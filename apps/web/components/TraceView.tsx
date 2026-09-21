@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { SimEvent } from "../../../shared/types/events";
+import type { SimEvent } from "@/lib/sim/types";
 
 /** Render-only causal chain derived from event.causality links. No invented edges. */
 export function TraceView({
