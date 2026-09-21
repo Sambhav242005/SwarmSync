@@ -28,6 +28,7 @@ export class Engine {
     if (seed !== undefined) this.seed = seed;
     this.rng = mulberry32(this.seed);
     this.log.clear(); this.n = 0; this.clock.sim_time = 0; this.clock.paused = true; this.wtick = 0;
+    if (this.world) this.world.seed = this.seed;
     this.world?.reset();
   }
   tick(dt: number): SimEvent[] {

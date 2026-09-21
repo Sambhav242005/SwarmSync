@@ -29,6 +29,15 @@ describe("swarm", () => {
     expect(a.log.all()).toEqual(b.log.all());
   });
 
+  it("reset propagates new seed to world", () => {
+    const run30 = (e: Engine) => { e.start(); for (let i = 0; i < 30; i++) e.tick(0.5); return JSON.stringify(e.log.all()); };
+    const r = Engine.fromScenario(7);
+    r.reset(42);
+    const logR = run30(r);
+    expect(logR).not.toBe(run30(Engine.fromScenario(7)));
+    expect(logR).toBe(run30(Engine.fromScenario(42)));
+  });
+
   it("failure window and conflict and completion", () => {
     const e = Engine.fromScenario(7);
     e.start();
