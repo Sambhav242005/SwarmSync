@@ -6,11 +6,11 @@ export async function POST(req: Request) {
     simulation_id?: unknown;
     speed?: unknown;
   };
-  const eng = simStore.get(typeof body.simulation_id === "string" ? body.simulation_id : "");
-  if (!eng) return NextResponse.json({ detail: "unknown simulation" }, { status: 404 });
   const s = Number(body.speed ?? 1);
   if (!Number.isFinite(s))
     return NextResponse.json({ detail: "speed must be float" }, { status: 400 });
+  const eng = simStore.get(typeof body.simulation_id === "string" ? body.simulation_id : "");
+  if (!eng) return NextResponse.json({ detail: "unknown simulation" }, { status: 404 });
   try {
     eng.setSpeed(s);
   } catch {
