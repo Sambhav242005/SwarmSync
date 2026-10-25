@@ -1,27 +1,23 @@
-# Simulation model
+# Simulation model: current behavior
 
-> All values are **simulated estimates, NOT real Android hardware measurements**.
+Updated: 25 October 2026. Active code is TypeScript in `apps/web/lib/sim`. [DESIGN.md](../DESIGN.md) defines the research replacement. Present latency/quality/energy/device values are synthetic, not Android measurements.
 
-## Tick
+## Time and randomness
 
-- Discrete ticks via `Engine.tick(dt)`: `Clock.advance(dt)` (`sim_time += dt*speed` if unpaused); paused or zero-advance ticks emit nothing. Live tick emits exactly one `TICK` event; `step(dt)` forces one tick regardless of pause flag (restores flag after).
+`Clock.advance(dt)` advances by `dt * speed` when unpaused. Speeds are 0.25, 0.5, 1, 2, 5 and 10. `Engine.step(dt)` temporarily unpauses for one tick and restores pause state. Start changes a flag; it does not install an execution loop.
 
-## Seeded RNG
+Each active tick emits `TICK` with Mulberry32 output and advances the world once. Agent progress and intermittent links depend on tick index, so speed/step changes can change outcomes at the same horizon. Playback-speed invariance is pending. Reset clears/reseeds engine and world; tests cover same-seed logs and changed-seed reset, not arbitrary scenario validity.
 
-- `Engine(seed)` -> `random.Random(seed)`; `reset(seed?)` reseeds. Each `TICK` payload carries `rng.random()`. `run_inference(..., seed)` uses `random.Random(seed + int(sha256(model_id),16) % 100000)` (stable sha256 across processes) with `0.95 + rng*0.1` latency jitter and `(rng-0.5)*0.05` quality noise.
+## Inference and resources
 
-## Event log / rebuild
+`inference.ts` averages CPU/GPU/NPU scores and applies fixed precision/thermal/battery factors plus seeded jitter to base latency. It synthesizes quality/confidence, returns profile memory and derives energy from a scalar and duration. Duration does not delay state transitions; battery drain uses synthetic constants rather than a calibrated energy model.
 
-- `EventLog` append-only; `up_to(t)` time-filtered replay. `Engine.rebuild(t)` = scrub primitive: state at `t` is `{sim_time: t, events: up_to(t)}`. Reset clears log, zeroes clock, pauses.
+These factors are not measured quantization speedups, supported GPU precision, calibrated confidence or physical battery behavior. Real artifacts and task-specific timing/memory profiles are pending.
 
-## Inference factors (`run_inference(device, model, complexity, seed)`)
+## Agents, links and replay
 
-- Capability `cap = (cpu_score + gpu_score + npu_score)/3`.
-- Latency: `base_latency_ms * (1.2-cap) * QUANT_FACTOR[quant] * (1+complexity) * THERMAL_FACTOR[thermal_state] * batt(1.2 if battery<20 else 1.0) * jitter`, rounded 2dp. `QUANT_FACTOR = FP32 1.6 / FP16 1.2 / INT8 1.0 / INT4 0.8`; `THERMAL_FACTOR = normal 1.0 / warm 1.3 / hot 1.8`.
-- Quality: `clamp(quality_score * cap * (1-complexity*0.2) + noise, 0, 1)` rounded 3dp; `memory_mb = memory_requirement_mb`; `energy_mwh = energy_cost * latency/1000` rounded 3dp; `confidence = quality`.
+Agents cycle through ten states. Role/model choices and demonstration truth/duplicate/conflict paths are hardcoded; only the first assigned role model is used for inference. Completion follows the cycle rather than an independently checked result.
 
-## Agent / link strategies
+All agents access one knowledge store. Links use range, deterministic tick-index flapping and endpoint failures. Bandwidth, latency and packet loss do not queue/deliver packets. A selectable strategy framework is not implemented.
 
-- `Agent`: 10-state cycle `IDLE -> PERCEIVE -> INFER -> UPDATE_KNOWLEDGE -> DECIDE_COMM -> SHARE -> WAIT -> COLLABORATE -> VALIDATE -> COMPLETE -> IDLE...`; `step()` advances one state.
-- `link_up(a, b, net)`: Euclidean `hypot(dx,dy) <= range_m` (default 30).
-- Relay utility: `U = wr*reliability + wi*gain + wu*uncertainty - wb*cost`; weights accept `{r,i,u,b}` or long-form `{reliability,gain,uncertainty,cost}`.
+`rebuild(t)` returns `{sim_time: t, events: log.up_to(t)}`; it does not rewind batteries, agent state, knowledge or queues. Full replay/local stores/scheduled transport are blockers in [TODO.md](../TODO.md).

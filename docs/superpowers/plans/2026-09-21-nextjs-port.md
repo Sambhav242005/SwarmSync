@@ -1,5 +1,8 @@
 # NextJS-Only Port Implementation Plan
 
+> Historical record. Current requirements, implementation decisions and execution status are in [SPEC.md](../../../SPEC.md), [DESIGN.md](../../../DESIGN.md) and [TODO.md](../../../TODO.md). Retained as history; earlier stacks, completion assumptions and worker instructions below do not govern the current research milestone.
+
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Port Python sim to TypeScript inside apps/web and delete all Python.

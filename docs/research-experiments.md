@@ -1,28 +1,28 @@
 # Research experiments
 
-> All results are **simulated estimates, NOT real Android hardware measurements**. No single "best score" is claimed — strategies are compared across dimensions.
+Updated: 25 October 2026. This is an experiment entry point, not completed benchmark evidence. Requirements, decisions and execution order are [SPEC.md](../SPEC.md), [DESIGN.md](../DESIGN.md) and [TODO.md](../TODO.md).
 
-## Run record
+## Initial study
 
-- Each run: `run_id` (`run_<8hex>` from `RunStore.save_run`), `config` (scenario_id + strategy + weights + seed JSON), `seed`, full event `log`. Stored sqlite `experiments/runs/runs.db`, table `runs(run_id, ts, config, seed, metrics{metrics,events})`.
+Start with six devices and separate CrisisMMD photograph/xBD satellite tracks; add drone segmentation later. Freeze held-out predictions and external network/failure traces, then compare direct delivery, full sharing and selective sharing. Local-only/no-network is diagnostic. Include a direct-delivery comparator so beating flooding is not the only evidence.
 
-## Repro
+Begin with fixed local inference. Add adaptation and language coordination with separate ablations and a rule-based baseline. Literature speedups and synthetic profiles are not measurements.
 
-- Same `seed` replays same `TICK.rng` stream and same inference jitter/noise (stable sha256 of `model_id`). `rebuild(t)` gives time-travel scrub for post-hoc analysis.
+## Collection protocol
 
-## 5 strategies comparison dimensions
+- Complete P0 correctness gates and selected dataset/model integration before final collection.
+- Pin splits, artifacts/conversions/tokenizers/runtimes, service-time/resource profiles, policies and scoring.
+- Use separate pilot seeds; start with 30 paired final seeds per condition and freeze count/protocol after uncertainty assessment.
+- Report useful on-time throughput, task quality, bytes, latency/freshness, memory and incomplete/failed outcomes; label energy provenance and keep modality scores separate.
+- Save config/data/profile hashes, revision, seeds, events, metrics and stop reason. Independently recompute plotted values and retain failed runs.
 
-1. Flooding (share-all): tasks_completed vs messages/bytes blowup.
-2. Utility-gated relay (`U = wr*rel + wi*gain + wu*unc - wb*cost`): conflicts/dupes vs coverage.
-3. Range-gated (`link_up`, range_m): delivery under intermittent links vs isolation.
-4. Quantization tier (FP32/FP16/INT8/INT4 factors): avg_latency_ms/energy_mwh vs avg_confidence/quality.
-5. Failure-aware (failures windows e.g. android_04 at 60 for 20s): robustness (completion during outage) vs overhead.
+Current sessions are in memory. The Python SQLite store was removed; batch collection and persistent exports remain pending.
 
-Compare per run: `Collector.summary()` keys + latency/energy/confidence means + robustness note. Report deltas, not winners.
+## Supporting evidence
 
-## Appendix: accepted plan-list deltas (from SDD reviews)
+- [Literature review](literature-review-on-device-vision.md) and [BibTeX](literature-review-on-device-vision.bib).
+- [Datasets, splits and terms](dataset-options.md).
+- [Budget/benchmark design](benchmark-and-budget-design.md).
+- [Android support/capacity](android-gpu-capacity-research.md).
 
-- `KnowledgeStore`: `insert` returns `inserted/updated/duplicate`; extras `updated` dict field and `find(knowledge_id)` accepted (backward-compatible versioning enhancement).
-- `Agent`/engine inits, `tsconfig/next/layout/api` wiring, `.gitignore` hygiene (pycache, tsbuildinfo, .next/out, next-env.d.ts), `package-lock` untracked repro via `npm install` — accepted per ledger rulings.
-- Slice metrics endpoint returns `{messages: len}` stub; full Collector wiring deferred.
-- Frontend verification via `tsc`/`next build`, engine via pytest with `PYTHONPATH=root` (bare pytest hits stale 3.10).
+No current experiment establishes real Android FPS/energy, calibrated hazard probability or structural safety. Hardware conclusions require measurements; simulation claims must disclose assumptions.

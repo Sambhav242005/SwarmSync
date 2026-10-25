@@ -1,5 +1,8 @@
 # NextJS-Only Port Design
 
+> Historical record. Current requirements, implementation decisions and execution status are in [SPEC.md](../../../SPEC.md), [DESIGN.md](../../../DESIGN.md) and [TODO.md](../../../TODO.md). Retained as history; earlier stacks, completion assumptions and worker instructions below do not govern the current research milestone.
+
+
 ## Goal
 Single Next.js deploy. No Python. No separate uvicorn. Same sim behavior, new RNG goldens.
 

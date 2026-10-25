@@ -1,25 +1,23 @@
 # Metrics
 
-> All values are **simulated estimates, NOT real Android hardware measurements**.
+Updated: 25 October 2026. Distinguish existing counters from [SPEC requirements](../SPEC.md#evaluation-and-release-gates) and [target implementation](../DESIGN.md#metrics-viewer-and-validation).
 
-## Categories
+## Current counters
 
-- Task: tasks_completed, completion rate per role.
-- Collaboration: KNOWLEDGE_SHARED messages, duplicates, conflicts, knowledge items.
-- Network: bytes transferred, link up/down transitions, relay decisions.
-- Resource: energy_mwh, memory_mb, avg_latency_ms.
-- Model: avg_confidence, quality per model_id, quantization tier.
-- Robustness: behavior under failure injection (e.g. device down window), rewind consistency (`rebuild(t)` == `up_to(t)`).
+`apps/web/lib/sim/collector.ts` counts sharing messages/declared payload bytes, conflicts and deduplicated creation markers. `knowledge` increments on sharing, not unique insertion. Task completion, energy, mean confidence and mean latency return zero in the collector.
 
-## Collector keys (`simulator/metrics/collector.py`)
+The metrics route processes the full log, overrides completion with a `task_completed` event count and adds `sim_time`. This is a scripted-event count, not correctness. Resource zeros are placeholders; declared payload sizes are not independently validated wire-byte measurements. Existing tests do not establish metric validity. No Python/SQLite run store remains active.
 
-- `ingest(events)`: `KNOWLEDGE_SHARED` -> `messages+=1`, `bytes += payload.bytes`, `knowledge+=1`; `CONFLICT` -> `conflicts+=1`. Accepts dicts or SimEvent.
-- `summary()` returns: `messages, bytes, conflicts, knowledge, tasks_completed (=0 stub), dupes (=0 stub), energy_mwh (=0.0 stub), avg_confidence (=0.0 stub), avg_latency_ms (=0.0 stub)`. Zero stubs are slice placeholders for full aggregation later.
+## Research measurements to implement
 
-## Run store (`simulator/experiments/store.py`)
+| Measurement | Definition |
+|---|---|
+| Useful throughput | Unique correct results received at required destination by deadline / full observation seconds |
+| Completion/coverage | Structurally delivered and correct/on-time results separately against eligible tasks |
+| Task quality | Per-dataset macro-F1/recall, detection AP or mask IoU; retain misses, false alarms and uncertainty |
+| Latency/freshness | Arrival/capture to receipt and observation age; p50/p95 plus late/undelivered counts |
+| Communication | Encoded payload/control/retry bytes; attempts/receipts/drops/duplicates separately |
+| Resources | Peak memory without shared-allocation double counting; energy units/provenance explicit |
+| Generation reliability | Input/generated tokens, retries, cap/context stops, timeouts and schema errors |
 
-- `RunStore.save_run(config, seed, metrics, events)` -> `run_id` (`run_<8hex>`), sqlite `runs(run_id, ts, config JSON, seed, metrics JSON{metrics,events})` at `experiments/runs/runs.db` (makedirs hardcoded, connection not context-managed — deferred hardening).
-
-## API note
-
-- Slice `GET /simulation/{sid}/metrics` returns minimal `{messages: len(log)}`, not full `Collector.summary()` — full Collector wiring deferred per SDD ruling (Task4->Task5). Collector + RunStore covered by `tests/test_metrics_store.py`.
+Unavailable values are nullable, not zero. Independently recompute metrics from events. Retain failures/retry costs; do not count duplicate deliveries as unique tasks or synthetic confidence as accuracy.

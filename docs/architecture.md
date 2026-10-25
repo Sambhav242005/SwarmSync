@@ -1,24 +1,15 @@
-# Architecture
+# Architecture: current implementation
 
-> All latencies, quality scores, energy figures in this slice are **simulated estimates, NOT real Android hardware measurements**.
+Updated: 25 October 2026. Existing behavior is described here; [DESIGN.md](../DESIGN.md) is the target architecture, [SPEC.md](../SPEC.md) owns requirements, and [TODO.md](../TODO.md) tracks work.
 
-## Event-sourced engine
+The active application lives in `apps/web`: Next.js App Router, React, TypeScript, Phaser and Zustand. The Python backend was removed. Remaining top-level directory names do not establish an active Python service.
 
-- `simulator/core/clock.py`: `Clock(speed)` in (0.25, 0.5, 1.0, 2.0, 5.0, 10.0); `sim_time` advances `dt*speed` when unpaused; starts paused.
-- `simulator/core/event_log.py`: `EventLog.append/all/up_to(t)`; `up_to` filters `sim_time <= t + 1e-9`.
-- `simulator/core/engine.py`: `Engine(seed, speed)` owns `random.Random(seed)` + Clock + EventLog. `start/pause/resume/set_speed/reset(seed?)`; `tick(dt)` emits one `TICK` SimEvent (`evt_{n}`, `sim_time` rounded 2dp, payload `rng`); `step(dt)` unpauses for one tick then restores pause state; `rebuild(t)` returns `{sim_time, events: up_to(t) as dicts}` — scrub/rewind primitive.
-- `shared/schemas/events.py`: `SimEvent(event_id, sim_time, type, source?, target?, payload={}, causality=[])` + `to_dict()`.
+`lib/sim/engine.ts` owns a Mulberry32 RNG, clock, event log and `SwarmWorld`. Data come from `apps/web/data`. It emits tick and world events for tasks, knowledge, discovery/loss and device failure/recovery; it is not tick-only.
 
-## API / WS
+Handlers under `/api/simulation/` expose create/start/pause/reset/step/speed/state and per-simulation topology/events/metrics. A module-local in-memory Map holds engines. There is no active SQLite run repository or WebSocket service. Cross-route/multi-worker ownership, server-driven advancement and persistence remain to be validated/implemented.
 
-- `simulator/api/main.py` (FastAPI `SwarmSync Simulator`): in-memory `_sims: dict[str, Engine]`.
-- `POST /simulation/create {seed}` -> `{simulation_id}`; `start/pause/reset/step {simulation_id, dt?}`; `GET /simulation/state?simulation_id` -> `rebuild(now)`; `GET /simulation/{sid}/events`; `GET /simulation/{sid}/metrics` -> `{messages: len(log)}` (minimal stub; full Collector wiring deferred, see metrics doc).
-- `WS /ws/simulation/{sid}`: accepts, sends `{sim_time, events: up_to(now)}` snapshot, closes (one-shot snapshot stream in slice).
+The API client has relative fetch helpers, but the page does not connect a live simulation workflow. HUD values are hardcoded, timeline scrub is a no-op and the Phaser scene is an unwired grid. Utility classes lack a matching stylesheet/Tailwind setup. An untracked Controls component exists but is not mounted.
 
-## Thin renderer — slice truth
+The world uses one knowledge store, fixed state-cycle agents and unscheduled inference estimates. Network delay/loss/bandwidth do not govern delivery. `rebuild(t)` filters events instead of reconstructing state. See [simulation model](simulation-model.md) and [metrics](metrics.md).
 
-- Engine ticks TICK-only; WS one-shot snapshot; frontend static shell (Hud hardcoded demo values, scrub noop, spawnPacket exposed unwired) — live wiring next slice. Keep sim-disclaimers.
-
-## Repo structure
-
-- `simulator/{core,agents,models,knowledge,networking,metrics,experiments,api}` headless (no phaser/react imports); `shared/schemas`; `data/{scenarios,device-profiles,model-profiles}`; `apps/web`; `tests/` (pytest, PYTHONPATH=root); `docs/`.
+The earlier audit passed three Vitest files (13 tests), TypeScript and a production build. Browser behavior and scientific validity are separate pending checks. No real dataset/checkpoint or Android inference adapter is integrated.
