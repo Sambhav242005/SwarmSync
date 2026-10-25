@@ -5,6 +5,7 @@ node_modules/
 .next/
 experiments/runs/*.db
 .superpowers/
+.serena/
 
 # web build artifacts
 *.tsbuildinfo

@@ -8,7 +8,7 @@ The active application lives in `apps/web`: Next.js App Router, React, TypeScrip
 
 Handlers under `/api/simulation/` expose create/start/pause/reset/step/speed/state and per-simulation topology/events/metrics. A module-local in-memory Map holds engines. There is no active SQLite run repository or WebSocket service. Cross-route/multi-worker ownership, server-driven advancement and persistence remain to be validated/implemented.
 
-The API client has relative fetch helpers, but the page does not connect a live simulation workflow. HUD values are hardcoded, timeline scrub is a no-op and the Phaser scene is an unwired grid. Utility classes lack a matching stylesheet/Tailwind setup. An untracked Controls component exists but is not mounted.
+The API client has relative fetch helpers, but the page does not connect a live simulation workflow. HUD values are hardcoded, timeline scrub is a no-op and the Phaser scene is an unwired grid. Utility classes lack a matching stylesheet/Tailwind setup. A Controls component exists but is not mounted.
 
 The world uses one knowledge store, fixed state-cycle agents and unscheduled inference estimates. Network delay/loss/bandwidth do not govern delivery. `rebuild(t)` filters events instead of reconstructing state. See [simulation model](simulation-model.md) and [metrics](metrics.md).
 
