@@ -1,5 +1,7 @@
 # Dataset options for SwarmSync comparisons
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Checked 25 October 2026 against dataset creators, official repositories, institutional pages and original data articles. No full dataset was downloaded, no account was created, and no click-through terms were accepted. Counts below describe the cited release/report, not a newly audited local manifest.
 
 ## Recommendation: maintain separate ground/social-photo and overhead tracks

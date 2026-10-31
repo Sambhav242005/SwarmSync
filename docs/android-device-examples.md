@@ -1,5 +1,7 @@
 # Android capacity examples for SwarmSync
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Checked 25 October 2026 against primary manufacturer and platform sources. These are **representative device configurations, not a sales-weighted or installed-base average**. The examples span budget through flagship devices released in 2024–2025. Capacity and availability vary by region; figures describe physical RAM rather than storage-backed memory extension.
 
 ## Concrete phones

@@ -1,5 +1,7 @@
 # SwarmSync literature review: on-device vision throughput and collaborative perception
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Reviewed: 25 October 2026. Audience: the SwarmSync research project. Scope: **17 primary papers**, with method and evaluation sections inspected in accessible full texts. This is a targeted engineering review, not a systematic literature review, an experimental reproduction, or a claim that every paragraph and supplement was read.
 
 ## Findings and recommendation

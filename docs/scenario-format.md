@@ -1,6 +1,8 @@
 # Scenario and profile formats
 
-Updated: 25 October 2026. Current demo data is described here. [DESIGN.md](../DESIGN.md#records-and-schema-version) defines future schema-2 records. Current device/model values are synthetic.
+> Scope reviewed 31 October 2026: this describes the previously inspected demo or proposed interfaces, not newly verified implementation. The [current synthetic-study scope](RESEARCH-COMPLETION-PLAN.md) governs; schema-2 behavior remains pending acceptance evidence.
+
+Updated: 25 October 2026. Current demo data is described here. [DESIGN.md](DESIGN.md#records-and-schema-version) defines future schema-2 records. Current device/model values are synthetic.
 
 ## Current scenario
 

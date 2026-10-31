@@ -1,6 +1,8 @@
 # Simulation model: current behavior
 
-Updated: 25 October 2026. Active code is TypeScript in `apps/web/lib/sim`. [DESIGN.md](../DESIGN.md) defines the research replacement. Present latency/quality/energy/device values are synthetic, not Android measurements.
+> Scope reviewed 31 October 2026: this describes the previously inspected demo or proposed interfaces, not newly verified implementation. The [current synthetic-study scope](RESEARCH-COMPLETION-PLAN.md) governs; schema-2 behavior remains pending acceptance evidence.
+
+Updated: 25 October 2026. Active code is TypeScript in `apps/web/lib/sim`. [DESIGN.md](DESIGN.md) defines the research replacement. Present latency/quality/energy/device values are synthetic, not Android measurements.
 
 ## Time and randomness
 
@@ -20,4 +22,4 @@ Agents cycle through ten states. Role/model choices and demonstration truth/dupl
 
 All agents access one knowledge store. Links use range, deterministic tick-index flapping and endpoint failures. Bandwidth, latency and packet loss do not queue/deliver packets. A selectable strategy framework is not implemented.
 
-`rebuild(t)` returns `{sim_time: t, events: log.up_to(t)}`; it does not rewind batteries, agent state, knowledge or queues. Full replay/local stores/scheduled transport are blockers in [TODO.md](../TODO.md).
+`rebuild(t)` returns `{sim_time: t, events: log.up_to(t)}`; it does not rewind batteries, agent state, knowledge or queues. Full replay/local stores/scheduled transport are blockers in [TODO.md](TODO.md).

@@ -1,0 +1,13 @@
+[
+ ["eval", "document.querySelector('#scrub').value=2.5;document.querySelector('#scrub').dispatchEvent(new Event('input')); if(!document.querySelector('#result').textContent.includes('truth unverified'))throw Error('normal outcome'); 'normal passed'"],
+ ["shot", "previews/anatomy/desktop.png", ".shell"],
+ ["click", "[data-mode=duplicate]"],
+ ["eval", "document.querySelector('#scrub').value=2;document.querySelector('#scrub').dispatchEvent(new Event('input'));if(!document.querySelector('#result').textContent.includes('Duplicate'))throw Error('duplicate outcome'); 'duplicate passed'"],
+ ["click", "[data-mode=invalid]"],
+ ["eval", "document.querySelector('#scrub').value=1;document.querySelector('#scrub').dispatchEvent(new Event('input'));if(!document.querySelector('#result').textContent.includes('Rejected'))throw Error('invalid outcome'); 'invalid passed'"],
+ ["key", "ArrowRight", "#scrub"],
+ ["eval", "Number(document.querySelector('#scrub').value)>1 ? 'keyboard passed' : (()=>{throw Error('keyboard')})()"],
+ ["click", "#theme"],
+ ["lines"],
+ ["shot", "previews/anatomy/closeup-light.png", ".art", 4]
+]

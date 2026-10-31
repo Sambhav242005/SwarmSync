@@ -1,5 +1,7 @@
 # Android GPU support, typical RAM and compute capacity
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Checked 25 October 2026 for SwarmSync. Research and Context7 workflows were used; runtime claims were checked against official Google documentation, device specifications against manufacturers, and the RAM market figure against the company reporting its own tracker. No Android device was benchmarked.
 
 ## Direct answer

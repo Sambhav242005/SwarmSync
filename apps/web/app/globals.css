@@ -1,0 +1,17 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #0b0f14; color: #eef4f5; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button { font: inherit; color: inherit; background: #26333a; border: 1px solid #53636a; border-radius: 3px; padding: .45rem .65rem; cursor: pointer; }
+button:hover:not(:disabled), button[aria-pressed="true"] { background: #72dac9; color: #071b19; }
+button:focus-visible { outline: 3px solid #f6ca72; outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.hud, .controls { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .8rem 1rem; background: #10191e; }
+.hud strong { letter-spacing: .1em; }.badge { color: #f6ca72; font-size: .75rem; font-weight: bold; }
+.notice, .status, .error { margin: 0; padding: .55rem 1rem; }.notice { background: #3b3020; color: #fff0c9; }.status { color: #b9d4d0; }.error { background: #592b2b; color: #fff; }
+.controls { border-block: 1px solid #324249; }.hint { color: #c0cecf; font-size: .85rem; }
+.workspace { display: flex; flex: 1; min-height: 20rem; }.world { flex: 1; padding: 1rem; min-width: 0; }.world h1, .timeline h2 { font-size: 1.1rem; margin: 0 0 .5rem; }.world p, .timeline p { color: #c0cecf; }
+.devices { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }.device { display: flex; flex-direction: column; gap: .5rem; padding: .8rem; background: #172328; }.device span { font-size: .85rem; }
+.timeline { padding: 1rem; background: #10191e; }.timeline ol { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; }.timeline button { font-size: .8rem; }
+aside { width: 20rem; flex-shrink: 0; background: #10191e; padding: 1rem; overflow-wrap: anywhere; } aside button { margin: .2rem; } aside dl { display: grid; grid-template-columns: 1fr 1fr; font-size: .85rem; } aside dd { margin: 0; } aside ul, aside ol { padding-left: 1.2rem; }
+@media (max-width: 700px) { .workspace { flex-direction: column; } aside { width: 100%; } }

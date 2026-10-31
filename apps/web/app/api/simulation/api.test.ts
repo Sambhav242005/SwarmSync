@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { POST as create } from "./create/route";
 import { POST as start } from "./start/route";
 import { POST as step } from "./step/route";
@@ -32,6 +32,19 @@ async function makeSid(seed = 1): Promise<string> {
 }
 
 describe("api (port of test_api.py)", () => {
+  it("shares simulation ownership across separately evaluated route modules", async () => {
+    vi.resetModules();
+    const createRoute = await import("./create/route");
+    const created = await createRoute.POST(post({ seed: 11 }));
+    expect(created.status).toBe(200);
+    const { simulation_id } = (await created.json()) as { simulation_id: string };
+
+    vi.resetModules();
+    const stepRoute = await import("./step/route");
+    const stepped = await stepRoute.POST(post({ simulation_id, dt: 0.5 }));
+    expect(stepped.status).toBe(200);
+  });
+
   it("create and step returns events", async () => {
     const sid = await makeSid(1);
     expect((await (await start(post({ simulation_id: sid }))).json())).toEqual({ ok: true });

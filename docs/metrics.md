@@ -1,6 +1,8 @@
 # Metrics
 
-Updated: 25 October 2026. Distinguish existing counters from [SPEC requirements](../SPEC.md#evaluation-and-release-gates) and [target implementation](../DESIGN.md#metrics-viewer-and-validation).
+> Scope reviewed 31 October 2026: this describes the previously inspected demo or proposed interfaces, not newly verified implementation. The [current synthetic-study scope](RESEARCH-COMPLETION-PLAN.md) governs; schema-2 behavior remains pending acceptance evidence.
+
+Updated: 25 October 2026. Distinguish existing counters from [SPEC requirements](SPEC.md#evaluation-and-release-gates) and [target implementation](DESIGN.md#metrics-viewer-and-validation).
 
 ## Current counters
 

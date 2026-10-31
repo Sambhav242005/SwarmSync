@@ -1,6 +1,8 @@
 # NextJS-Only Port Design
 
-> Historical record. Current requirements, implementation decisions and execution status are in [SPEC.md](../../../SPEC.md), [DESIGN.md](../../../DESIGN.md) and [TODO.md](../../../TODO.md). Retained as history; earlier stacks, completion assumptions and worker instructions below do not govern the current research milestone.
+> Scope reviewed 31 October 2026: historical/deferred material. The [current research scope](../../RESEARCH-COMPLETION-PLAN.md) takes precedence; embedded worker instructions and checklists are not active execution instructions.
+
+> Historical record. Current requirements, implementation decisions and execution status are in [SPEC.md](../../SPEC.md), [DESIGN.md](../../DESIGN.md) and [TODO.md](../../TODO.md). Retained as history; earlier stacks, completion assumptions and worker instructions below do not govern the current research milestone.
 
 
 ## Goal

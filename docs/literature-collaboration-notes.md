@@ -1,5 +1,7 @@
 # Collaborative inference and perception: six primary-paper reading notes
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Reviewed 2026-10-25 for SwarmSync. These are method-and-evaluation readings of six accessible full-text papers, not reproductions of their experiments or claims of line-by-line coverage. Page numbers below are physical PDF pages, starting at 1. The notes distinguish reported results from proposed applications to SwarmSync. Publisher/author PDFs were retrieved to a temporary cache; the project contains these original notes rather than redistributed paper copies.
 
 ## 1. Neurosurgeon: Collaborative Intelligence Between the Cloud and Mobile Edge

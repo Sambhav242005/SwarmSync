@@ -1,5 +1,7 @@
 # SwarmSync: datasets, context budgets and complete outputs
 
+> Scope reviewed 31 October 2026: dated reference research for optional extensions. Dataset/model training, executable language runtimes and Android measurements are not prerequisites for the [current synthetic study](RESEARCH-COMPLETION-PLAN.md). Original evidence dates and source claims below have not been revalidated.
+
 Research/design note, 25 October 2026. User decisions: include both ground/social imagery and satellite/drone imagery; cover additional requirements needed for a credible comparison. This note specifies proposed behavior; it does not claim the simulator, model conversion or Android adapter already implements it.
 
 ## Dataset decision

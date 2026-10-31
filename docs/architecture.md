@@ -1,6 +1,8 @@
 # Architecture: current implementation
 
-Updated: 25 October 2026. Existing behavior is described here; [DESIGN.md](../DESIGN.md) is the target architecture, [SPEC.md](../SPEC.md) owns requirements, and [TODO.md](../TODO.md) tracks work.
+> Scope reviewed 31 October 2026: this describes the previously inspected demo or proposed interfaces, not newly verified implementation. The [current synthetic-study scope](RESEARCH-COMPLETION-PLAN.md) governs; schema-2 behavior remains pending acceptance evidence.
+
+Updated: 25 October 2026. Existing behavior is described here; [DESIGN.md](DESIGN.md) is the target architecture, [SPEC.md](SPEC.md) owns requirements, and [TODO.md](TODO.md) tracks work.
 
 The active application lives in `apps/web`: Next.js App Router, React, TypeScript, Phaser and Zustand. The Python backend was removed. Remaining top-level directory names do not establish an active Python service.
 
