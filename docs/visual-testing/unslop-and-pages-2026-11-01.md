@@ -76,3 +76,9 @@ Official references: [GitHub Pages workflow](https://docs.github.com/en/pages/ge
 - GitHub action tag API: checkout v6, setup-node v7 and deploy-pages v4 exist; Pages versions follow current official example.
 
 Broad VIS/P3/research acceptance remains open. Deployment execution will be recorded separately after publishing.
+
+## Hosted acceptance
+
+Published source revision `c74aa97` to main. [Pages run 41231961059](https://github.com/Sambhav242005/SwarmSync/actions/runs/41231961059) succeeded (build 16s, deploy 16s). [CI run 41231960955](https://github.com/Sambhav242005/SwarmSync/actions/runs/41231960955) succeeded (41s): install, typecheck, unit tests, production build and production HTTP smoke.
+
+Lead opened https://sambhav242005.github.io/SwarmSync/ in Brave, verified the academic title/abstract/navigation/status and inspected [live screenshot](project-page-live-2026-11-01.png), actual viewport 1874px wide. Hosted page shows current source rather than a missing-page response. Deployment emitted nonfatal upstream action Node-runtime and ubuntu-latest migration notices; no action step failed. No public interactive simulator hosting is claimed.

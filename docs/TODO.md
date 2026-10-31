@@ -123,5 +123,6 @@ Evidence: [lead verification report](visual-testing/unslop-and-pages-2026-11-01.
 - [x] **UI-POLISH-01 Desktop craft:** spacing/type/control hierarchy, quiet warning, aligned inspector and device grid implemented; lead inspected persisted 1440×900 desktop screenshot and checked create/play/pause/step/speed/selection/reset. Typecheck, 25 tests, build and production HTTP smoke pass.
 - [x] **PAGE-SOURCE-01 Academic project page:** reference inspected, static page adapted to paper-style reading, truthful abstract/status/evidence boundaries; desktop screenshot inspected; local asset/anchor checker passes.
 - [x] **PAGE-WORKFLOW-01 Configuration:** Pages workflow validates static artifacts for PRs/pushes and deploys only main; separate app CI inspected; YAML parses. Hosted run acceptance remains separate.
-- [ ] **PAGE-DEPLOY-01 Hosted acceptance:** publish main, observe successful Actions deployment and verify public project URL.
+- [x] **PAGE-DEPLOY-01 Hosted acceptance:** published c74aa97 to main; Pages run 41231961059 and CI run 41231960955 passed; lead opened public URL and inspected persisted live screenshot. Mobile/accessibility remain open separately.
 - [ ] **UI-POLISH-02 Remaining runtime checks:** viewport tool failed to change actual viewer dimensions; mobile, loading/error screenshots, full keyboard journey, zoom, contrast audit, reduced-motion runtime and recovery/duplicate stress remain open. Broader VIS/P3 gates above remain unchecked.
+
