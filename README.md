@@ -46,3 +46,11 @@ These commands reflect the checked-in package scripts and Vitest dependency; the
 | [Experiments](docs/research-experiments.md) | Synthetic study protocol and evidence requirements |
 
 Dataset, Android and literature notes in `docs/` remain dated research references. Plans in `docs/superpowers/` and the Anatomy preview are historical or deferred material, not active task instructions. Where older material conflicts, the current-scope section of the research completion plan takes precedence.
+
+## Project page and GitHub Actions
+
+The [research project page](https://sambhav242005.github.io/SwarmSync/) is published from `docs/site` by `.github/workflows/pages.yml`. It uses a paper-style presentation and describes current evidence and incomplete work. GitHub Pages hosts static files; run the interactive server demo locally using the instructions above.
+
+Pages pull requests validate local assets and anchors with `python scripts/check-project-page.py`; pushes to main deploy the artifact. `.github/workflows/ci.yml` independently installs, typechecks, tests, builds and HTTP-smoke-tests the Next.js application under `apps/web`.
+
+Current verification and limitations: [1 November viewer and Pages report](docs/visual-testing/unslop-and-pages-2026-11-01.md).

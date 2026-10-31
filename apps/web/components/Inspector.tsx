@@ -77,7 +77,7 @@ export function Inspector({
                 : "px-2 py-1 text-xs bg-neutral-800 rounded"
             }
           >
-            {t}
+            {t.charAt(0) + t.slice(1).toLowerCase()}
           </button>
         ))}
       </div>

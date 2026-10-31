@@ -1,0 +1,50 @@
+name: Build and deploy research page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/site/**'
+      - '.github/workflows/pages.yml'
+      - 'scripts/check-project-page.py'
+  pull_request:
+    paths:
+      - 'docs/site/**'
+      - '.github/workflows/pages.yml'
+      - 'scripts/check-project-page.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Check site files
+        run: python3 scripts/check-project-page.py
+      - name: Upload static project page
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs/site
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

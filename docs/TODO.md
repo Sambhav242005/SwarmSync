@@ -1,6 +1,6 @@
 # SwarmSync TODO
 
-Updated: 31 October 2026. Requirements: [SPEC.md](SPEC.md). Decisions: [DESIGN.md](DESIGN.md). Check a task only with acceptance evidence; literature and design do not establish implementation.
+Updated: 1 November 2026. Requirements: [SPEC.md](SPEC.md). Decisions: [DESIGN.md](DESIGN.md). Check a task only with acceptance evidence; literature and design do not establish implementation.
 
 ## Completed groundwork
 
@@ -115,3 +115,13 @@ Historical pre-fix Luna runtime audit performed: [31 October report](visual-test
 ## Completion rule
 
 Initial simulator readiness requires P0, SYN requirements, a validated synthetic reference run and essential P3 workflows. Paper readiness also requires P2, a frozen protocol, final reproducible artifacts and a manuscript. P1, HW and EXT work is deferred. Real Android claims require separate HW evidence. Historical checked items above are records of earlier work, not newly verified results.
+
+## Viewer polish and project page — 1 November 2026
+
+Evidence: [lead verification report](visual-testing/unslop-and-pages-2026-11-01.md). No delegation; no independent advisor review claimed.
+
+- [x] **UI-POLISH-01 Desktop craft:** spacing/type/control hierarchy, quiet warning, aligned inspector and device grid implemented; lead inspected persisted 1440×900 desktop screenshot and checked create/play/pause/step/speed/selection/reset. Typecheck, 25 tests, build and production HTTP smoke pass.
+- [x] **PAGE-SOURCE-01 Academic project page:** reference inspected, static page adapted to paper-style reading, truthful abstract/status/evidence boundaries; desktop screenshot inspected; local asset/anchor checker passes.
+- [x] **PAGE-WORKFLOW-01 Configuration:** Pages workflow validates static artifacts for PRs/pushes and deploys only main; separate app CI inspected; YAML parses. Hosted run acceptance remains separate.
+- [ ] **PAGE-DEPLOY-01 Hosted acceptance:** publish main, observe successful Actions deployment and verify public project URL.
+- [ ] **UI-POLISH-02 Remaining runtime checks:** viewport tool failed to change actual viewer dimensions; mobile, loading/error screenshots, full keyboard journey, zoom, contrast audit, reduced-motion runtime and recovery/duplicate stress remain open. Broader VIS/P3 gates above remain unchecked.
