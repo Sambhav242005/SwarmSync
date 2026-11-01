@@ -1,0 +1,3 @@
+# Bundled offline previews contain upstream shader source formatting.
+docs/prototypes/unreliable-world/swarmsync-world.html -whitespace
+docs/visual-testing/connected-world-geometry/world-world.html -whitespace

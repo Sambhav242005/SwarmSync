@@ -4,6 +4,16 @@ Updated: 1 November 2026. Requirements: [SPEC.md](SPEC.md). Decisions: [DESIGN.m
 
 ## Completed groundwork
 
+- [x] **CONNECTED-WORLD-VIDEO:** record the actual prototype at1280×720 with normal/slow/fast movement, altitude adjustment and seeded layout change. Discovery, rehearsal, recording assertions and full video decode passed; caption/control overlap corrected with a browser regression check. [Video evidence](visual-testing/connected-world-video/REPORT.md).
+
+- [ ] **CONNECTED-WORLD integration:** connect the interactive world to research snapshots, transport and single-owner execution; finish full viewer/accessibility acceptance. The current output is an independent synthetic connectivity prototype.
+  - [x] Build a standalone world joining settlement, mountain pass and airfield, with moving rover/aircraft, configurable elevation and placement, seeded layouts and 0.25×–3× playback.
+  - [x] Verify 11 explicit model/artifact tests, final browser journeys and 51 scene-render checks; complete independent source review and lead inspection. [Exact evidence, worker files and remaining limits](visual-testing/connected-world/REPORT.md).
+  - [ ] Add direct scene dragging/picking and terrain-aware placement validation if proceeding to production; current placement uses accessible sliders and warns about embedded endpoints.
+  - [ ] Complete geometry-to-obstruction boundary regression, full keyboard/screen-reader/contrast/200% audit and target-device performance checks before broad acceptance.
+
+- [x] **UI-DEMO (1 November):** discover, rehearse and record the current legacy viewer at 1280×720; playback/selection/reset assertions passed in rehearsal and recording. [Evidence and limits](visual-testing/ui-demo-2026-11-01.md). This does not close W2-VIEWER or broader browser/accessibility acceptance.
+
 - [x] Inspect code/UI/API/profiles and identify research blockers.
 - [x] Establish earlier audit baseline: 13 tests, TypeScript and production build passed. Browser/scientific validation remains pending.
 - [x] Save [17-paper review](literature-review-on-device-vision.md), [collaboration notes](literature-collaboration-notes.md) and [BibTeX](literature-review-on-device-vision.bib).

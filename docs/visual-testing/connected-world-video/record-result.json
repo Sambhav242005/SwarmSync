@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "mode": "record",
+  "viewport": "1280x720",
+  "errors": [],
+  "checks": [
+    "normal time advances",
+    "slow mode selected",
+    "fast mode selected",
+    "pause",
+    "altitude edited",
+    "random layout changes",
+    "play after layout"
+  ]
+}

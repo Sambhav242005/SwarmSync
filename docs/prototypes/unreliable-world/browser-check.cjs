@@ -1,0 +1,38 @@
+const {chromium}=require('playwright');
+const path=require('path');const fs=require('fs');const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({headless:true});try{const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const url='file:///'+path.join(__dirname,'swarmsync-world.html').replaceAll('\\','/')+'?inspect';
+ await page.goto(url);await page.waitForFunction(()=>window.__prototype?.runtime.stats().frames>0);
+ const dir=path.resolve(__dirname,'../../visual-testing/connected-world');fs.mkdirSync(dir,{recursive:true});
+ await page.screenshot({path:path.join(dir,'desktop.png'),fullPage:true});
+ await page.getByLabel('Selected device',{exact:true}).selectOption('5');
+ await page.locator('#altitude').fill('6');assert.equal(await page.evaluate(()=>window.__prototype.config.altitude),6);
+ await page.getByRole('button',{name:'Step +0.5 s',exact:true}).click();assert.equal(await page.evaluate(()=>window.__prototype.runtime.stats().time),.5);
+ await page.getByLabel('Speed',{exact:true}).selectOption('0.25');await page.getByRole('button',{name:'Play',exact:true}).click();
+ await page.waitForTimeout(1200);await page.getByRole('button',{name:'Pause',exact:true}).click();const slow=await page.evaluate(()=>window.__prototype.runtime.stats().time);assert(slow>.6&&slow<1.1);
+ await page.getByRole('button',{name:'Restart time',exact:true}).click();await page.getByLabel('Speed',{exact:true}).selectOption('3');await page.getByRole('button',{name:'Play',exact:true}).click();await page.waitForTimeout(1000);await page.getByRole('button',{name:'Pause',exact:true}).click();const fast=await page.evaluate(()=>window.__prototype.runtime.stats().time);assert(fast>2&&fast<4.5);
+ await page.getByRole('button',{name:'Apply seed',exact:true}).click();const first=await page.evaluate(()=>JSON.stringify(window.__prototype.config.positions));await page.getByRole('button',{name:'Apply seed',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.stringify(window.__prototype.config.positions)),first);
+ await page.getByRole('button',{name:'New random layout',exact:true}).click();assert.notEqual(await page.evaluate(()=>JSON.stringify(window.__prototype.config.positions)),first);
+ await page.getByLabel('Selected device',{exact:true}).selectOption('0');await page.locator('#x').fill('3');assert.equal(await page.evaluate(()=>window.__prototype.config.positions[0][0]),3);
+ await page.locator('#x').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.evaluate(()=>window.__prototype.config.positions[0][0]),3.1);
+ await page.getByRole('button',{name:'Restart time',exact:true}).click();assert.equal(await page.evaluate(()=>window.__prototype.config.positions[0][0]),3.1);
+ await page.getByLabel('Environment',{exact:true}).selectOption('open');assert.equal(await page.evaluate(()=>window.__prototype.state.links.some(l=>l.reason==='Obstructed')),false);
+ await page.getByLabel('World finish',{exact:true}).selectOption('blueprint');
+ await page.getByRole('button',{name:'Restore defaults',exact:true}).click();assert.equal(await page.evaluate(()=>window.__prototype.config.positions[0][0]),-15);assert.equal(await page.evaluate(()=>window.__prototype.runtime.stats().finish),'miniature');
+ await page.locator('#x').fill('-14');await page.locator('#z').fill('-3');assert.equal(await page.locator('#placement-warning').isVisible(),true);
+ await page.locator('#height').fill('4');assert.equal(await page.locator('#placement-warning').isVisible(),false);
+ await page.getByRole('button',{name:'Restore defaults',exact:true}).click();
+ await page.getByLabel('Environment',{exact:true}).selectOption('open');await page.locator('#range').fill('11');
+ assert.match(await page.locator('#route-status').textContent(),/Ground 1.*Ground 2.*Ground 3.*Ground 4/);
+ assert.equal(await page.locator('#region-list span').count(),3);
+ await page.getByRole('button',{name:'Restore defaults',exact:true}).click();
+ await page.evaluate(()=>window.__prototype.runtime.seek(18));await page.getByLabel('Selected device',{exact:true}).selectOption('2');assert.match(await page.locator('#node-state').textContent(),/Offline/);
+ await page.screenshot({path:path.join(dir,'outage.png'),fullPage:true});
+ await page.getByLabel('Selected device',{exact:true}).selectOption('5');await page.locator('#altitude').fill('8');await page.evaluate(()=>window.__prototype.runtime.seek(36));await page.screenshot({path:path.join(dir,'aircraft-max-height.png'),fullPage:true});
+ await page.emulateMedia({reducedMotion:'reduce'});await page.getByRole('button',{name:'Play',exact:true}).click();assert.match(await page.locator('#status').textContent(),/Reduced motion/);await page.getByRole('button',{name:'Step +0.5 s',exact:true}).click();assert.equal(await page.evaluate(()=>window.__prototype.runtime.stats().time),.5);
+ await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(dir,'mobile.png'),fullPage:true});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.locator('#x').count();
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(dir,'interaction-report.json'),JSON.stringify({passed:true,slowTime:slow,fastTime:fast,checks:['altitude','step','slow playback','fast playback','seed repeatability','new placement','manual placement','keyboard slider','restart preserves placement','open environment','restore defaults including finish','inside obstacle warning','elevation clears obstacle warning','cross-region path','three region counts','scheduled outage','reduced motion','mobile no horizontal overflow'],errors},null,2));
+ console.log('Browser checks passed',JSON.stringify({slow,fast}));}finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

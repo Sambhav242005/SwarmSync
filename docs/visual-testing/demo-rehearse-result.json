@@ -1,0 +1,15 @@
+{
+  "mode": "rehearse",
+  "passed": true,
+  "viewport": "1280x720",
+  "checks": [
+    "play advances",
+    "pause freezes",
+    "step advances",
+    "speed selected",
+    "agent inspector",
+    "event selection",
+    "reset time and events"
+  ],
+  "browserProblems": []
+}

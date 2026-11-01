@@ -1,0 +1,97 @@
+[
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "Play"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "Step · 0.5 base s"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "Reset demo"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "0.5×"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "1×"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "2×"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "5×"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_01"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_a · vision_ocr · IDLE"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_02"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_b · vision · IDLE"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_03"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_c · small_llm · IDLE"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_04"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_d · ocr_reasoning · IDLE"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_05"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_e · embedding_validator · IDLE"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "android_06"
+  },
+  {
+    "tag": "BUTTON",
+    "type": "submit",
+    "text": "agent_f · coordinator · IDLE"
+  }
+]

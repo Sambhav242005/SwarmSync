@@ -1,0 +1,224 @@
+[
+  {
+    "tag": "BUTTON",
+    "id": "play",
+    "type": "submit",
+    "text": "Play"
+  },
+  {
+    "tag": "BUTTON",
+    "id": "step",
+    "type": "submit",
+    "text": "Step +0.5 s"
+  },
+  {
+    "tag": "BUTTON",
+    "id": "restart",
+    "type": "submit",
+    "text": "Restart time"
+  },
+  {
+    "tag": "SELECT",
+    "id": "speed",
+    "type": "select-one",
+    "text": "0.25× slow0.5×1× normal2×3× fast",
+    "options": [
+      {
+        "value": "0.25",
+        "text": "0.25× slow"
+      },
+      {
+        "value": "0.5",
+        "text": "0.5×"
+      },
+      {
+        "value": "1",
+        "text": "1× normal"
+      },
+      {
+        "value": "2",
+        "text": "2×"
+      },
+      {
+        "value": "3",
+        "text": "3× fast"
+      }
+    ]
+  },
+  {
+    "tag": "INPUT",
+    "id": "seed",
+    "type": "number",
+    "text": ""
+  },
+  {
+    "tag": "BUTTON",
+    "id": "shuffle",
+    "type": "submit",
+    "text": "Apply seed"
+  },
+  {
+    "tag": "BUTTON",
+    "id": "next-seed",
+    "type": "submit",
+    "text": "New random layout"
+  },
+  {
+    "tag": "BUTTON",
+    "id": "restore",
+    "type": "submit",
+    "text": "Restore defaults"
+  },
+  {
+    "tag": "SELECT",
+    "id": "node",
+    "type": "select-one",
+    "text": "Ground 1 · one gold dotGround 2 · two gold dotsGround 3 · three gold dotsGround 4 · four gold dotsRover · road routeAircraft · aerial relay",
+    "options": [
+      {
+        "value": "0",
+        "text": "Ground 1 · one gold dot"
+      },
+      {
+        "value": "1",
+        "text": "Ground 2 · two gold dots"
+      },
+      {
+        "value": "2",
+        "text": "Ground 3 · three gold dots"
+      },
+      {
+        "value": "3",
+        "text": "Ground 4 · four gold dots"
+      },
+      {
+        "value": "4",
+        "text": "Rover · road route"
+      },
+      {
+        "value": "5",
+        "text": "Aircraft · aerial relay"
+      }
+    ]
+  },
+  {
+    "tag": "INPUT",
+    "id": "x",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "z",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "height",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "rover-x",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "rover-z",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "altitude",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "SELECT",
+    "id": "route-target",
+    "type": "select-one",
+    "text": "Ground 1Ground 2Ground 3Ground 4RoverAircraft",
+    "options": [
+      {
+        "value": "0",
+        "text": "Ground 1"
+      },
+      {
+        "value": "1",
+        "text": "Ground 2"
+      },
+      {
+        "value": "2",
+        "text": "Ground 3"
+      },
+      {
+        "value": "3",
+        "text": "Ground 4"
+      },
+      {
+        "value": "4",
+        "text": "Rover"
+      },
+      {
+        "value": "5",
+        "text": "Aircraft"
+      }
+    ]
+  },
+  {
+    "tag": "SELECT",
+    "id": "environment",
+    "type": "select-one",
+    "text": "Buildings + mountain obstaclesOpen ground comparison",
+    "options": [
+      {
+        "value": "settlement",
+        "text": "Buildings + mountain obstacles"
+      },
+      {
+        "value": "open",
+        "text": "Open ground comparison"
+      }
+    ]
+  },
+  {
+    "tag": "INPUT",
+    "id": "range",
+    "type": "range",
+    "text": ""
+  },
+  {
+    "tag": "INPUT",
+    "id": "outages",
+    "type": "checkbox",
+    "text": ""
+  },
+  {
+    "tag": "SELECT",
+    "id": "finish",
+    "type": "select-one",
+    "text": "MiniatureBlueprintPixelHalftone",
+    "options": [
+      {
+        "value": "miniature",
+        "text": "Miniature"
+      },
+      {
+        "value": "blueprint",
+        "text": "Blueprint"
+      },
+      {
+        "value": "pixel",
+        "text": "Pixel"
+      },
+      {
+        "value": "halftone",
+        "text": "Halftone"
+      }
+    ]
+  }
+]

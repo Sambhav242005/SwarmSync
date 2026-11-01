@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "slowTime": 0.8112499999999514,
+  "fastTime": 3.134699999999718,
+  "checks": [
+    "altitude",
+    "step",
+    "slow playback",
+    "fast playback",
+    "seed repeatability",
+    "new placement",
+    "manual placement",
+    "keyboard slider",
+    "restart preserves placement",
+    "open environment",
+    "restore defaults including finish",
+    "inside obstacle warning",
+    "elevation clears obstacle warning",
+    "cross-region path",
+    "three region counts",
+    "scheduled outage",
+    "reduced motion",
+    "mobile no horizontal overflow"
+  ],
+  "errors": []
+}

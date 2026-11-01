@@ -13,3 +13,10 @@ apps/web/.next/
 apps/web/out/
 
 apps/web/next-env.d.ts
+
+# Local recording intermediates; keep final videos and verification evidence.
+docs/visual-testing/raw-video/
+docs/visual-testing/connected-world-video/raw/
+docs/visual-testing/world-prototype/
+docs/prototypes/unreliable-world/world-render-check.html
+docs/visual-testing/review-*s.png

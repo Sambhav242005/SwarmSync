@@ -1,0 +1,14 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const skill=process.env.DIORAMA_WORLDS_HOME||'C:/Users/NPC/.agents/skills/diorama-worlds';
+const require=createRequire(path.join(skill,'package.json'));
+const {build}=require('esbuild');
+const result=await build({entryPoints:[path.join(dir,'app.js')],alias:{'@diorama/worlds':path.join(skill,'kit/world.js')},bundle:true,write:false,format:'iife',minify:true,target:'es2022',legalComments:'inline'});
+const template=await readFile(path.join(dir,'template.html'),'utf8');
+const notices=await readFile(path.join(skill,'THIRD_PARTY_NOTICES.txt'),'utf8');
+const html=template.replace('<!--BUNDLE-->',()=> '<!-- '+notices.replaceAll('-->','--&gt;')+' --><script>'+result.outputFiles[0].text.replace(/<\/script/gi,'<\\/script')+'</script>');
+await writeFile(path.join(dir,'swarmsync-world.html'),html);
+console.log('Built offline prototype:',html.length,'characters');
